@@ -1,0 +1,20 @@
+import hashlib
+
+# Message to mine
+message = "Zelalem loves crypto"
+
+# Mining difficulty: number of leading zeros required in hash
+difficulty = 4
+prefix = '0' * difficulty
+
+nonce = 0
+while True:
+    # Combine message and nonce
+    text = message + str(nonce)
+    # Compute SHA-256 hash
+    hash_result = hashlib.sha256(text.encode()).hexdigest()
+    # Check if hash meets difficulty
+    if hash_result.startswith(prefix):
+        print(f"Block mined!\nNonce: {nonce}\nHash: {hash_result}")
+        break
+    nonce += 1
